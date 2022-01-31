@@ -105,6 +105,39 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="transaksi" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Transaksi
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="outlet" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Outlet
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="paket" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+                Paket
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="member" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Member
+              </p>
+            </a>
+          </li>
+        </ul>
       </nav>
       <!-- /.sidebar-menu -->
     </div>

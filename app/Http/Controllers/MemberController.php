@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Member;
-use App\Http\Requests\StoreMemberRequest;
-use App\Http\Requests\UpdateMemberRequest;
+use Illuminate\Http\Request;
 
 class MemberController extends Controller
 {
+    public function __construct()
+    {
+        
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +18,9 @@ class MemberController extends Controller
      */
     public function index()
     {
-        //
+        return view('member/index',[
+            "member" => Member::all()
+        ]);
     }
 
     /**
@@ -31,12 +36,19 @@ class MemberController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreMemberRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreMemberRequest $request)
+    public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'nama' => 'required',
+            'jenis_kelamin' => 'required',   
+            'tlp' => 'required'
+        ]);
+    Member::create($validated);
+
+    return redirect('member')->with('success', 'Data Berhasil Ditambahkan');
     }
 
     /**
@@ -58,19 +70,20 @@ class MemberController extends Controller
      */
     public function edit(Member $member)
     {
-        //
+        
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateMemberRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateMemberRequest $request, Member $member)
+    public function update(Request $request, Member $member)
     {
-        //
+        Member::findOrFail($request->id)->update($request->all());
+        return redirect('member')->with('success', 'Data Berhasil Diubah');
     }
 
     /**
@@ -81,6 +94,7 @@ class MemberController extends Controller
      */
     public function destroy(Member $member)
     {
-        //
+        Member::destroy($member->id);
+        return redirect('member')->with('success','Data Berhasil Dihapus');
     }
 }

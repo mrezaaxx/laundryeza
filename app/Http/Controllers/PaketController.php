@@ -1,10 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Outlet;
 use App\Models\Paket;
-use App\Http\Requests\StorePaketRequest;
-use App\Http\Requests\UpdatePaketRequest;
+use Illuminate\Http\Request;
 
 class PaketController extends Controller
 {
@@ -15,7 +14,11 @@ class PaketController extends Controller
      */
     public function index()
     {
-        //
+
+        return view('paket/index',[
+            "paket" => Paket::all(),
+            "outlet" => Outlet::all()
+        ]);
     }
 
     /**
@@ -31,12 +34,19 @@ class PaketController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StorePaketRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePaketRequest $request)
+    public function store(Request $request)
     {
-        //
+        $validated = $request -> validate([
+            "id_outlet" => "required",
+            "jenis" => "required",
+            "nama_paket" => "required",
+            "harga" => "required"
+        ]);
+        Paket::create($validated);
+        return redirect('paket')->with('success', 'Data Berhasil Ditambahkan');
     }
 
     /**
@@ -64,13 +74,14 @@ class PaketController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdatePaketRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Paket  $paket
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePaketRequest $request, Paket $paket)
+    public function update(Request $request, Paket $paket)
     {
-        //
+        Paket::findOrFail($request->id)->update($request->all());
+        return redirect('paket')->with('success', 'Data Berhasil Diubah');
     }
 
     /**
@@ -81,6 +92,7 @@ class PaketController extends Controller
      */
     public function destroy(Paket $paket)
     {
-        //
+        Paket::destroy($paket->id);
+        return redirect('paket')->with('success', 'Data telah dihapus!');
     }
 }
