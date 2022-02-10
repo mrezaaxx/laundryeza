@@ -16,7 +16,7 @@ class CreatePaketsTable extends Migration
         Schema::create('tb_paket', function (Blueprint $table) {
             $table->id();
             $table->integer("id_outlet")->nullable();
-            $table->enum("jenis", ['kiloan', 'selimut', 'bed_cover', 'kaos', 'lain']);
+            $table->enum("jenis", ['Kiloan', 'Selimut', 'Bedcover', 'Kaos', 'Lain']);
             $table->string("nama_paket", 100);
             $table->integer("harga");
             $table->timestamps();

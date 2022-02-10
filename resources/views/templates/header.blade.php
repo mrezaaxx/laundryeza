@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Laundry</title>
   <link href=" {{ URL::asset('assets/dist/css/bootstrap.min.css') }}" rel="stylesheet">
-  <link rel="stylesheet" href="cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">  
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">  
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">	
 
@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{ URL::asset('assets/plugins/fontawesome-free/css/all.min.css')}}">
+  <script src="https://kit.fontawesome.com/37258f5d1d.js" crossorigin="anonymous"></script>
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ URL::asset('assets/dist/css/adminlte.min.css')}}">
 </head>
@@ -27,7 +28,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="" class="nav-link">Home</a>
+        <a href="/" class="nav-link">Login</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
@@ -93,55 +94,21 @@
       </div>
 
       <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Dashboard
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="transaksi" class="nav-link">
-              <i class="nav-icon fas fa-book"></i>
-              <p>
-                Transaksi
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="outlet" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Outlet
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="paket" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
-              <p>
-                Paket
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="member" class="nav-link">
-              <i class="nav-icon fas fa-book"></i>
-              <p>
-                Member
-              </p>
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
+      <div class="sidebar">
+        @if (auth()->user()->role = 'admin')
+            @include('templates.sidebar-admin')
+        @elseif (auth()->user()->role = 'owner')
+            @include('templates.sidebar-owner')
+        @elseif (auth()->user()->role = 'kasir')
+            @include('templates.sidebar-kasir')
+        @endif
+      </div>
+      <form action="logout" method="post">
+        @csrf
+        <button class="btn btn-danger" type="submit">Logout</button>
+    </form>
+        
     </div>
-    <!-- /.sidebar -->
   </aside>
 
   <!-- Content Wrapper. Contains page content -->

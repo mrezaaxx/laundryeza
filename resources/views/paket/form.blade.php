@@ -14,7 +14,7 @@
                     <label for="nama_paket">Nama Paket</label>
                     <input type="text" class="form-control" id="nama_paket" placeholder="" name="nama_paket">
                 </div>
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label for="id_outlet">Nama Outlet</label>
                     <select type="text" class="form-control" id="id_outlet">
                       <option value="">Pilih Outlet</option>
@@ -22,16 +22,15 @@
                       <option value="{{ $out->id }}">{{ $out->nama }}</option>
                     @endforeach
                   </select>
-                    
-                </div>
+                </div> --}}
                 <div class="form-group">
                     <label for="jenis">Jenis</label>
                     <select type="text" class="form-control col-sm-3" id="jenis" placeholder="jenis" name="jenis">
-                        <option value="kiloan">Kiloan</option>
-                        <option value="selimut">Selimut</option>
-                        <option value="bed_cover">Bed Cover</option>
-                        <option value="kaos">Kaos</option>
-                        <option value="lain">Lainnya</option>
+                        <option value="Kiloan">Kiloan</option>
+                        <option value="Selimut">Selimut</option>
+                        <option value="Bedcover">Bed Cover</option>
+                        <option value="Kaos">Kaos</option>
+                        <option value="Lain">Lainnya</option>
                     </select>
                 </div>
                 <div class="form-group">

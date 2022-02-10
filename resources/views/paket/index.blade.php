@@ -3,11 +3,12 @@
 <section class="content">
     <div class="card">
         <div class="card-header">
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#formInputPaket">
-            Tambah Paket
-          </button>   
+          <button type="button" class="btn btn-dark outline" data-bs-toggle="modal" data-bs-target="#formInputPaket">
+            <i class="fas fa-pen-square" ></i> Tambah Data
+          </button> 
           <hr>
           <h3 class="card-title">Data Paket</h3>
+          
         </div>
     <div class="container-fluid">
       <div class="row">
@@ -34,9 +35,9 @@
         <td><form action="paket/{{ $item->id }}" method="POST" class="d-inline">
           @method('delete')
           @csrf
-          <button class="border-0" onclick="return confirm('Apakah Anda Yakin?')"><i class="bi bi-trash-fill"></i></button>
+          <button class="border-0" onclick="return confirm('Apakah Anda Yakin?')"><i class="fas fa-eraser"></i></button>
           </form> |
-          <button type="button" data-bs-toggle="modal" data-bs-target="#formUpdatePaket{{ $item->id }}" class="border-0"><i class="bi bi-pen-fill"></i></button> </td>
+          <button type="button" data-bs-toggle="modal" data-bs-target="#formUpdatePaket{{ $item->id }}" class="border-0"><i class="fas fa-edit"></i></button> </td>
         </tr>
           @include('paket.update')
         @endforeach

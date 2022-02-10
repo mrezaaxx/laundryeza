@@ -40,7 +40,7 @@ class PaketController extends Controller
     public function store(Request $request)
     {
         $validated = $request -> validate([
-            "id_outlet" => "required",
+            // "id_outlet" => "required",
             "jenis" => "required",
             "nama_paket" => "required",
             "harga" => "required"
