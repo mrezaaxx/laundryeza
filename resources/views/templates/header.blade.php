@@ -95,11 +95,11 @@
 
       <!-- Sidebar Menu -->
       <div class="sidebar">
-        @if (auth()->user()->role = 'admin')
+        @if (auth()->user()->role == 'admin')
             @include('templates.sidebar-admin')
-        @elseif (auth()->user()->role = 'owner')
+        @elseif (auth()->user()->role == 'owner')
             @include('templates.sidebar-owner')
-        @elseif (auth()->user()->role = 'kasir')
+        @elseif (auth()->user()->role == 'kasir')
             @include('templates.sidebar-kasir')
         @endif
       </div>

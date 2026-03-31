@@ -19,7 +19,9 @@ use App\Http\Controllers\PaketController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', [LoginController::class, 'index']);
+Route::get('/', function () {
+    return view('landing');
+});
 
 Route::post('login',[LoginController::class,'authenticate']);
 Route::post('logout',[LoginController::class,'logout']);
