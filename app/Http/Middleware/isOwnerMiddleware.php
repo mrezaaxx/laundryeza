@@ -17,10 +17,10 @@ class isOwnerMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::check() && Auth::user()->role ='owner'){
+        if(Auth::check() && Auth::user()->role == 'owner'){
             return $next($request);
         }else{
-            return redirect()-route('login');
+            return redirect()->route('login');
         }
     }
 }

@@ -16,6 +16,7 @@ class CreateMembersTable extends Migration
         Schema::create('tb_member', function (Blueprint $table) {
             $table->id();
             $table->string("nama", 100);
+            $table->text("alamat");
             $table->enum("jenis_kelamin", ['L','P']);
             $table->string("tlp", 15);
             $table->timestamps();
